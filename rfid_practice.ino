@@ -3,8 +3,8 @@
 
 #define GREEN_LED 6
 #define RED_LED   7
-#define RFID_RST   5
-#define RFID_SS    10
+#define RFID_RST  5
+#define RFID_SS   10
 
 // MFRC522 mfrc522(RFID_SS, RFID_RST);
 MFRC522 rfid(RFID_SS, RFID_RST); // Instance of the class
@@ -38,7 +38,7 @@ void loop() {
  
   MFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);
  
-  Serial.print(rfid.uid.uidByte);
+  // Serial.print(rfid.uid.uidByte);
   Serial.print(F("RFID Tag UID:"));
   printHex(rfid.uid.uidByte, rfid.uid.size);
   Serial.println("");
@@ -51,6 +51,18 @@ void printHex(byte *buffer, byte bufferSize) {
 
   for (byte i = 0; i < bufferSize; i++) {
     Serial.print(buffer[i] < 0x10 ? " 0" : " ");
+    Serial.print("BREAK");
     Serial.print(buffer[i], HEX);
   }
+  flashLED(GREEN_LED);
+  delay(200);
+  flashLED(GREEN_LED);
+  delay(200);
+  flashLED(RED_LED);
+}
+
+void flashLED(int led) {
+  digitalWrite(led, HIGH);
+  delay(750);
+  digitalWrite(led, LOW);
 }
