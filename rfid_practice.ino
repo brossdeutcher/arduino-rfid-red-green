@@ -9,8 +9,11 @@
 // MFRC522 mfrc522(RFID_SS, RFID_RST);
 MFRC522 rfid(RFID_SS, RFID_RST); // Instance of the class
 
-MFRC522::MIFARE_Key key; 
- 
+MFRC522::MIFARE_Key key;
+
+String tagId = "";
+String authId = "60 88 57 53 ";
+
 void setup() {
 	Serial.begin(9600);
 
@@ -24,6 +27,7 @@ void setup() {
 
 	SPI.begin();
   rfid.PCD_Init();
+
 }
 
 void loop() {
@@ -49,16 +53,20 @@ void loop() {
 //Routine to dump a byte array as hex values to Serial. 
 void printHex(byte *buffer, byte bufferSize) {
 
+  tagId = "";
+
   for (byte i = 0; i < bufferSize; i++) {
+    tagId.concat(String(rfid.uid.uidByte[i], HEX));
+    tagId.concat(" ");
     Serial.print(buffer[i] < 0x10 ? " 0" : " ");
-    Serial.print("BREAK");
     Serial.print(buffer[i], HEX);
   }
-  flashLED(GREEN_LED);
-  delay(200);
-  flashLED(GREEN_LED);
-  delay(200);
-  flashLED(RED_LED);
+  Serial.println();
+  Serial.print(tagId);
+  Serial.println();
+  Serial.print(tagId == "60 88 57 53 ");
+
+  tagId == authId ? flashLED(GREEN_LED) : flashLED(RED_LED);
 }
 
 void flashLED(int led) {
