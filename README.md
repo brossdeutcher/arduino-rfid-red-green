@@ -1,9 +1,10 @@
 # arduino-rfid-red-green
 
-## Setup
+## Boot
 After boot, authorized id is blank
 - red and green LEDs flash once together, indicating successful boot with blank authId
 
+## Setting authId
 Id of first scan is saved as the authId
 - alternating red and green LED flashes indicate authId saved
 - flashes in order: green, red, green, red, green
