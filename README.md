@@ -11,6 +11,6 @@ Id of first scan is saved as the authId
 - flashes in order, indicating successful scan: green, red, green, red, green
 
 ## Subsequent Scans
-Subsequent scans compare to authId, saved from id of first scan
+Subsequent scans compare scanned id to authId (authId saved from id of first scan)
 - If the id matches authId, green light flashes
 - If the id matches authId, red light flashes
