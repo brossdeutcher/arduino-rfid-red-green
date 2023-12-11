@@ -12,7 +12,8 @@ MFRC522 rfid(RFID_SS, RFID_RST); // Instance of the class
 MFRC522::MIFARE_Key key;
 
 String tagId = "";
-String authId = "60 88 57 53 ";
+// String authId = "60 88 57 53 ";
+String authId = "";
 
 void setup() {
 	Serial.begin(9600);
@@ -66,6 +67,7 @@ void printHex(byte *buffer, byte bufferSize) {
   Serial.println();
   Serial.print(tagId == "60 88 57 53 ");
 
+  setAuth(tagId);
   tagId == authId ? flashLED(GREEN_LED) : flashLED(RED_LED);
 }
 
@@ -73,4 +75,14 @@ void flashLED(int led) {
   digitalWrite(led, HIGH);
   delay(750);
   digitalWrite(led, LOW);
+}
+
+void setAuth(String tagId) {
+  if (authId == "") {
+    authId = tagId;
+    flashLED(GREEN_LED);
+    flashLED(RED_LED);
+    flashLED(GREEN_LED);
+    flashLED(RED_LED);
+  }
 }
