@@ -2,6 +2,7 @@
 
 ## Boot
 red and green LEDs flash once together, indicating successful boot
+
 After boot, authorized id is blank and waits for first scan
 
 ## Setting authId
