@@ -14,3 +14,10 @@ Id of first scan is saved as the authId
 Subsequent scans compare scanned id to authId (authId saved from id of first scan)
 - If the id matches authId, green light flashes
 - If the id matches authId, red light flashes
+
+## Hardware
+- Arduino Uno
+- Breadboard
+- SunFounder Reader Module Kit Mifare RC522
+- Green LED
+- Red LED
